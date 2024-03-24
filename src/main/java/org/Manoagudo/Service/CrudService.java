@@ -1,2 +1,7 @@
-package org.Manoagudo.Service;public class CrudService {
+package org.Manoagudo.Service;
+
+public class CrudService {
+    public static void runner(){
+
+    }
 }

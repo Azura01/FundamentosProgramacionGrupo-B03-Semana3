@@ -1,6 +1,8 @@
 package org.Manoagudo.Service;
 
-public interface Generate {
+public interface GeneradorArchivo {
 
-    public void FileWriter();
+    public void createProductList();
+    public void createVendorList();
+    public void createRecordSells();
 }
