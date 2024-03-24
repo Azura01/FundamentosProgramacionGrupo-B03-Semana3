@@ -1,0 +1,6 @@
+ ===== Listado de vendedores registrados ========
+Tipo de Documento: CC No. 1075111254 Nombre Completo: Jose Manuel Agudo Benavides
+Tipo de Documento: CC No. 1075252123 Nombre Completo: Diego Fernando Suarez Sanchez
+Tipo de Documento: CC No. 1031123522 Nombre Completo: Helbert Sneider Hernandez Pabon
+Tipo de Documento: CC No. 1052431233 Nombre Completo: Juan Daniel Ramirez Pardo
+Tipo de Documento: CC No. 1052431233 Nombre Completo: Juan Sebastian Acelas Balaguera

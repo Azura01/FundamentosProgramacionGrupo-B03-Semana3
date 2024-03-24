@@ -1,0 +1,17 @@
+===== El vendedor Diego Fernando =====
+Producto: Apple Iphone 15 Pro Max
+Cantidad vendida: 11
+Total vendido: 8.45350044E7
+
+Producto: Apple Iphone 14 Pro Max
+Cantidad vendida: 6
+Total vendido: 3.3192001799999997E7
+
+Producto: Ipad 15' de 128 Gbs
+Cantidad vendida: 2
+Total vendido: 4870000.2
+
+Producto: Smart Watch 14`
+Cantidad vendida: 11
+Total vendido: 1.85350044E7
+

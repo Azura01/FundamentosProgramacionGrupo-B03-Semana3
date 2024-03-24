@@ -1,0 +1,17 @@
+===== El vendedor Juan Sebastian =====
+Producto: Apple Iphone 15 Pro Max
+Cantidad vendida: 1
+Total vendido: 7685000.4
+
+Producto: Apple Iphone 14 Pro Max
+Cantidad vendida: 8
+Total vendido: 4.42560024E7
+
+Producto: Ipad 15' de 128 Gbs
+Cantidad vendida: 3
+Total vendido: 7305000.300000001
+
+Producto: Smart Watch 14`
+Cantidad vendida: 9
+Total vendido: 1.51650036E7
+

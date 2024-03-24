@@ -1,0 +1,17 @@
+===== El vendedor Helbert Sneider =====
+Producto: Apple Iphone 15 Pro Max
+Cantidad vendida: 5
+Total vendido: 3.8425002E7
+
+Producto: Apple Iphone 14 Pro Max
+Cantidad vendida: 10
+Total vendido: 5.5320003E7
+
+Producto: Ipad 15' de 128 Gbs
+Cantidad vendida: 5
+Total vendido: 1.21750005E7
+
+Producto: Smart Watch 14`
+Cantidad vendida: 9
+Total vendido: 1.51650036E7
+
