@@ -13,12 +13,15 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+// Clase que implementa la interfaz GeneradorArchivo para generar archivos de información
+
 public class GenerateInfoFiles implements GeneradorArchivo {
 
-
+ // Método para crear un archivo con la lista de productos
+    
     @Override
     public void createProductList() {
-        String fileName = "Productos.txt";
+        String fileName = "Productos.txt"; // Nombre del archivo de productos
 
         try (FileWriter writer = new FileWriter(fileName)) {
             writer.write("===== Listado de productos =====\n");
@@ -31,10 +34,12 @@ public class GenerateInfoFiles implements GeneradorArchivo {
         }
 
     }
-
+    
+// Método para crear un archivo con la lista de vendedores
+    
     @Override
     public void createVendorList() {
-        String fileName = "Vendedores.txt";
+        String fileName = "Vendedores.txt"; // Nombre del archivo de vendedores
 
         try (FileWriter writer = new FileWriter(fileName)) {
             writer.write(" ===== Listado de vendedores registrados ========\n");
@@ -46,20 +51,26 @@ public class GenerateInfoFiles implements GeneradorArchivo {
         }
 
     }
-
+    
+// Método para crear un archivo con el historial de ventas de cada vendedor
+    
     @Override
     public void createRecordSells() {
 
-        List<Vendedor> vendedores = BaseDatos.baseDeDatosVendedores();
-        List<Producto> productos = BaseDatos.baseDeDatosProductos();
+        List<Vendedor> vendedores = BaseDatos.baseDeDatosVendedores(); // Lista de vendedores
+        List<Producto> productos = BaseDatos.baseDeDatosProductos(); // Lista de productos
 
-        int i = 1;
+        int i = 1; // Variable para numerar los archivos de historial de ventas
 
+// Recorre cada vendedor para crear su historial de ventas en un archivo separado
+        
         for (Vendedor vendedor : vendedores) {
             String fileName = "HistorialVentas_" + (i++) + ".txt";
 
             try (FileWriter writer = new FileWriter(fileName)) {
                 writer.write("===== El vendedor " + vendedor.getNombreVendedor() + " =====\n");
+                
+// Genera información aleatoria de ventas para cada producto del vendedor
 
                 for (Producto producto : productos) {
                     int cantidadVendida = BaseDatos.generateRandomInt();
