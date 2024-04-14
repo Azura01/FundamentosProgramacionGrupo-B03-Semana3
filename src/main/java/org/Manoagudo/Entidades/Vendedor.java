@@ -2,9 +2,11 @@ package org.Manoagudo.Entidades;
 
 import org.Manoagudo.Enums.TipoDocumento;
 
+import java.util.List;
+
 // Clase que representa un vendedor
 
-public class Vendedor {
+public class Vendedor implements Comparable<Vendedor>{
     
      // Atributos de la clase Vendedor
     
@@ -12,6 +14,8 @@ public class Vendedor {
     private Long idVendedor; // Identificador del vendedor
     private String nombreVendedor; // Nombre del vendedor
     private String apellidosVendedor; // Apellidos del vendedo
+    private double totalRecaudado; //total vendido por el vendedor
+    private List<HistorialVentas> historialVentas; // Lista de historial de ventas del vendedor
 
      // Constructor con parámetros para inicializar los atributos
 
@@ -64,6 +68,23 @@ public class Vendedor {
     public void setApellidosVendedor(String apellidosVendedor) {
         this.apellidosVendedor = apellidosVendedor;
     }
+
+    public double getTotalRecaudado() {
+        return totalRecaudado;
+    }
+
+    public void setTotalRecaudado(double totalRecaudado) {
+        this.totalRecaudado = totalRecaudado;
+    }
+
+    public List<HistorialVentas> getHistorialVentas() {
+        return historialVentas;
+    }
+
+    // Método para agregar un registro de venta al historial de ventas del vendedor
+    public void agregarVenta(HistorialVentas venta) {
+        historialVentas.add(venta);
+    }
     
 // Método toString para representar la información del vendedor como una cadena de texto
     
@@ -71,4 +92,11 @@ public class Vendedor {
     public String toString() {
         return "Tipo de Documento: " + getTipoDocumento() + " No. " + getIdVendedor() + " Nombre Completo: " + getNombreVendedor() + " " + getApellidosVendedor();
     }
+
+    @Override
+    public int compareTo(Vendedor otroVendedor) {
+        // Comparamos los vendedores en función del total recaudado
+        return Double.compare(this.totalRecaudado, otroVendedor.totalRecaudado);
+    }
+
 }

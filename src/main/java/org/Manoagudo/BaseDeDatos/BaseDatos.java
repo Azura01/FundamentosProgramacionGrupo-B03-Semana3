@@ -1,6 +1,5 @@
 package org.Manoagudo.BaseDeDatos;
 
-import org.Manoagudo.Entidades.HistorialVentas;
 import org.Manoagudo.Entidades.Producto;
 import org.Manoagudo.Entidades.Vendedor;
 import org.Manoagudo.Enums.TipoDocumento;
@@ -8,7 +7,6 @@ import org.Manoagudo.Enums.TipoDocumento;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 
 public class BaseDatos {
     
@@ -18,23 +16,23 @@ public class BaseDatos {
 
         List<Producto> listaProductos = new ArrayList<>();
 
-        Producto producto1 = new Producto(1L, "Apple Iphone 15 Pro Max", 7685000.4);
-        Producto producto2 = new Producto(2L, "Apple Iphone 14 Pro Max", 5532000.3);
-        Producto productos3 = new Producto(3L, "Ipad 15' de 128 Gbs", 2435000.1);
-        Producto productos4 = new Producto(4L, "Smart Watch 14`", 1685000.4);
-        
+        Producto producto1 = new Producto(1L, "Apple Iphone 15 Pro Max", 785.4);
+        Producto producto2 = new Producto(2L, "Apple Iphone 14 Pro Max", 400.53);
+        Producto productos3 = new Producto(3L, "Ipad 15' de 128 Gbs", 342.2);
+        Producto productos4 = new Producto(4L, "Smart Watch 14`", 160.4);
+
 // Agregar productos a la lista
-        
+
         listaProductos.add(producto1);
         listaProductos.add(producto2);
         listaProductos.add(productos3);
         listaProductos.add(productos4);
 
-        return listaProductos;
 
+        return listaProductos;
     }
+
 // Método para generar una lista de vendedores predefinidos
-    
     public static List<Vendedor> baseDeDatosVendedores() {
 
         List<Vendedor> listaVendedores = new ArrayList<>();
@@ -59,38 +57,7 @@ public class BaseDatos {
     }
     
 // Método para simular la base de datos de ventas y obtener el historial de ventas de un vendedor
-    
-    public static HistorialVentas baseDatosVentas(){
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("De que vendedor le gustaria conocer su historial de ventas, por favor especifique ID");
-        int id = scanner.nextInt();
-
-        List<Producto> productos = new ArrayList<>(baseDeDatosProductos());
-        List<Vendedor> vendedores = new ArrayList<>(baseDeDatosVendedores());
-        List<HistorialVentas> historialVentas = new ArrayList<>();
-
-        HistorialVentas historialVentas1 = new HistorialVentas();
-        
- // Establecer el vendedor en el historial de ventas
-        
-        for(Vendedor vendedor : vendedores){
-            historialVentas1.setVendedor(vendedor);
-        }
-        
- // Establecer el producto en el historial de ventas
-        
-        for(Producto producto : productos){
-            historialVentas1.setProducto(producto);
-        }
-
-// Establecer el vendedor específico en el historial de ventas
-        
-        historialVentas1.setVendedor(vendedores.get(id));
-
-        return historialVentas1;
-
-    }
 
     public static int generateRandomInt() {
         int min = 1;

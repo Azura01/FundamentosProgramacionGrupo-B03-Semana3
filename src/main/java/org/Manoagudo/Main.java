@@ -4,6 +4,7 @@ import org.Manoagudo.BaseDeDatos.BaseDatos;
 import org.Manoagudo.Entidades.Vendedor;
 import org.Manoagudo.Service.GenerateInfoFiles;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +22,9 @@ public class Main {
         
         generarArchivos.createProductList();
         generarArchivos.createRecordSells();
+        generarArchivos.generarReporteVendedores();
+        generarArchivos.createVendorList();
+        generarArchivos.createProductSoldFile();
 
     }
 }

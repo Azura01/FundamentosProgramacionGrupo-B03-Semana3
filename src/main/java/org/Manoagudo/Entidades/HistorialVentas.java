@@ -1,67 +1,57 @@
 package org.Manoagudo.Entidades;
 
+import org.Manoagudo.BaseDeDatos.BaseDatos;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class HistorialVentas {
- // Atributos de la clase    
-    private Vendedor vendedor; // Vendedor asociado al historial de ventas
-    private Producto producto; // Producto asociado al historial de ventas
-    private int cantidadVendida; // Cantidad de productos vendidos
-    private Double totalVendido; // Total facturado por la venta
-    
-// Constructor con parámetros
-    
-    public HistorialVentas(Vendedor vendedor, Producto producto, int cantidadVendida, Double totalVendido) {
-        this.vendedor = vendedor;
-        this.producto = producto;
-        this.cantidadVendida = cantidadVendida;
-        this.totalVendido = totalVendido;
+
+    private static HistorialVentas instanciaUnica = new HistorialVentas(); // Instancia única
+    private List<Vendedor> vendedores = BaseDatos.baseDeDatosVendedores();
+    private List<Producto> productos = BaseDatos.baseDeDatosProductos();
+    private Map<Vendedor, Map<Producto, Integer>> ventasPorVendedor;
+    private Map<Producto, Double> totalVendidoPorProducto; // Mapa para almacenar el total vendido por producto
+
+    private HistorialVentas() {
+        vendedores = BaseDatos.baseDeDatosVendedores();
+        productos = BaseDatos.baseDeDatosProductos();
+    }
+    public static HistorialVentas obtenerInstancia() {
+        return instanciaUnica;
     }
 
-    public HistorialVentas() {
-    }
-    
-// Métodos para obtener y establecer el vendedor
-    
-    public Vendedor getVendedor() {
-        return vendedor;
+    public void reporteVentasGeneral() {
+        ventasPorVendedor = new HashMap<>();
+        totalVendidoPorProducto = new HashMap<>();
+
+        for (Vendedor vendedor : vendedores) {
+            Map<Producto, Integer> ventasPorProducto = new HashMap<>();
+            double totalVendidoVendedor = 0.0; // Variable para almacenar el total vendido por este vendedor
+
+            for (Producto producto : productos) {
+                int cantidadProductosVendidos = BaseDatos.generateRandomInt();
+                ventasPorProducto.put(producto, cantidadProductosVendidos);
+                double totalVentaProducto = cantidadProductosVendidos * producto.getPrecioProducto();
+                totalVendidoVendedor += totalVentaProducto; // Sumar al total vendido por este vendedor
+                totalVendidoPorProducto.put(producto, totalVendidoPorProducto.getOrDefault(producto, 0.0) + totalVentaProducto);
+            }
+
+            ventasPorVendedor.put(vendedor, ventasPorProducto);
+            vendedor.setTotalRecaudado(totalVendidoVendedor); // Actualizar el total vendido por este vendedor
+        }
     }
 
-    public void setVendedor(Vendedor vendedor) {
-        this.vendedor = vendedor;
-    }
-    
-// Métodos para obtener y establecer el producto
-    
-    public Producto getProducto() {
-        return producto;
+    public Map<Vendedor, Map<Producto, Integer>> getVentasPorVendedor() {
+        return ventasPorVendedor;
     }
 
-    public void setProducto(Producto producto) {
-        this.producto = producto;
-    }
-    
- // Métodos para obtener y establecer la cantidad vendida
-    
-    public int getCantidadVendida() {
-        return cantidadVendida;
+    public Map<Producto, Double> getTotalVendidoPorProducto() {
+        return totalVendidoPorProducto;
     }
 
-    public void setCantidadVendida(int cantidadVendida) {
-        this.cantidadVendida = cantidadVendida;
-    }
-    
-// Método para obtener el total vendido
-    
-    public Double getTotalVendido() {
-        return getCantidadVendida() * producto.getPrecioProducto();
-    }
-
-    public void setTotalVendido(Double totalVendido) {
-        this.totalVendido = totalVendido;
-    }
-// Método toString para representar el historial de ventas como una cadena de texto
-    @Override
-    public String toString() {
-        return vendedor.getTipoDocumento() + " " + " No. " + vendedor.getIdVendedor() + "Nombre Completo: " + vendedor.getNombreVendedor() + " " + vendedor.getApellidosVendedor() + " \n"
-                + "\n " + " Producto con ID: " + producto.getIdProducto() + " Cantidad de productos vendida " + getCantidadVendida() + " Total facturado: " + getTotalVendido();
+    public List<Vendedor> getVendedores() {
+        return vendedores;
     }
 }

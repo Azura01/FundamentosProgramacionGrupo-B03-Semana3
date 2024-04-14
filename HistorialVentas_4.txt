@@ -1,17 +1,19 @@
 ===== El vendedor Juan Daniel =====
-Producto: Apple Iphone 15 Pro Max
-Cantidad vendida: 1
-Total vendido: 7685000.4
-
+ 
 Producto: Apple Iphone 14 Pro Max
-Cantidad vendida: 4
-Total vendido: 2.21280012E7
+Cantidad vendida: 2
+Total vendido: 801.06
 
 Producto: Ipad 15' de 128 Gbs
+Cantidad vendida: 7
+Total vendido: 2395.4
+
+Producto: Apple Iphone 15 Pro Max
 Cantidad vendida: 9
-Total vendido: 2.1915000900000002E7
+Total vendido: 7068.599999999999
 
 Producto: Smart Watch 14`
-Cantidad vendida: 2
-Total vendido: 3370000.8
+Cantidad vendida: 11
+Total vendido: 1764.4
 
+Total vendido por Juan Daniel: 12029.46

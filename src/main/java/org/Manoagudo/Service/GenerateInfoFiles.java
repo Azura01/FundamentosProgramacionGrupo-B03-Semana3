@@ -5,20 +5,20 @@ import org.Manoagudo.Entidades.HistorialVentas;
 import org.Manoagudo.Entidades.Producto;
 import org.Manoagudo.Entidades.Vendedor;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 // Clase que implementa la interfaz GeneradorArchivo para generar archivos de información
 
 public class GenerateInfoFiles implements GeneradorArchivo {
 
- // Método para crear un archivo con la lista de productos
-    
+    private HistorialVentas historialVentas = HistorialVentas.obtenerInstancia();
+
+
+
+    // Método para crear un archivo con la lista de productos
+
     @Override
     public void createProductList() {
         String fileName = "Productos.txt"; // Nombre del archivo de productos
@@ -34,9 +34,9 @@ public class GenerateInfoFiles implements GeneradorArchivo {
         }
 
     }
-    
+
 // Método para crear un archivo con la lista de vendedores
-    
+
     @Override
     public void createVendorList() {
         String fileName = "Vendedores.txt"; // Nombre del archivo de vendedores
@@ -51,79 +51,97 @@ public class GenerateInfoFiles implements GeneradorArchivo {
         }
 
     }
-    
+
 // Método para crear un archivo con el historial de ventas de cada vendedor
-    
+
     @Override
     public void createRecordSells() {
-
-        List<Vendedor> vendedores = BaseDatos.baseDeDatosVendedores(); // Lista de vendedores
-        List<Producto> productos = BaseDatos.baseDeDatosProductos(); // Lista de productos
+        historialVentas.reporteVentasGeneral(); // Generar el reporte de ventas
 
         int i = 1; // Variable para numerar los archivos de historial de ventas
 
-// Recorre cada vendedor para crear su historial de ventas en un archivo separado
-        
-        for (Vendedor vendedor : vendedores) {
+        for (Vendedor vendedor : historialVentas.getVendedores()) {
             String fileName = "HistorialVentas_" + (i++) + ".txt";
 
             try (FileWriter writer = new FileWriter(fileName)) {
-                writer.write("===== El vendedor " + vendedor.getNombreVendedor() + " =====\n");
-                
-// Genera información aleatoria de ventas para cada producto del vendedor
+                writer.write("===== El vendedor " + vendedor.getNombreVendedor() + " =====\n \n");
 
-                for (Producto producto : productos) {
-                    int cantidadVendida = BaseDatos.generateRandomInt();
-                    Double totalVendido = cantidadVendida * producto.getPrecioProducto();
+                double totalVentasVendedor = vendedor.getTotalRecaudado(); // Obtener el total vendido por este vendedor
+
+                Map<Producto, Integer> ventasPorProducto = historialVentas.getVentasPorVendedor().get(vendedor);
+
+                for (Map.Entry<Producto, Integer> entry : ventasPorProducto.entrySet()) {
+                    Producto producto = entry.getKey();
+                    int cantidadVendida = entry.getValue();
+                    double totalVendido = cantidadVendida * producto.getPrecioProducto();
                     writer.write("Producto: " + producto.getNameProducto() + "\n");
                     writer.write("Cantidad vendida: " + cantidadVendida + "\n");
                     writer.write("Total vendido: " + totalVendido + "\n");
                     writer.write("\n");
                 }
 
+                writer.write("Total vendido por " + vendedor.getNombreVendedor() + ": " + totalVentasVendedor + "\n");
+
                 System.out.println("Archivo generado con éxito: " + fileName);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
-/*
-        HistorialVentas historialVentas = new HistorialVentas();
-        List<HistorialVentas> historialVentasList = new ArrayList<>();
-
-        for (Vendedor vendedor : BaseDatos.baseDeDatosVendedores()) {
-
-            StringBuilder fileName = new StringBuilder();
-
-            historialVentas.setVendedor(vendedor);
-
-            for(Producto producto : BaseDatos.baseDeDatosProductos()){
-                historialVentas.setProducto(producto);
-            }
-
-            for (int i = 1; i <= BaseDatos.baseDeDatosVendedores().size(); i++) {
-                fileName.append("Vendedor-No: ").append(i);
-            }
-
-            try (FileWriter writer = new FileWriter(fileName.toString())) {
-                writer.write(" ===== El vendedor " + historialVentas.getVendedor().getNombreVendedor());
-
-                historialVentas.setCantidadVendida(BaseDatos.generateRandomInt());
-                historialVentas.getTotalVendido();
-
-                historialVentasList.add(historialVentas);
-
-                for(HistorialVentas record : historialVentasList){
-                    writer.write(record.toString());
-                }
-
-
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
-
-        }*/
     }
 
+    public void generarReporteVendedores() {
+        String nombreArchivo = "RankingVentasPorVendedor.csv";
+
+        // Obtener la lista de vendedores ordenados por el total vendido de mayor a menor
+        List<Vendedor> vendedoresOrdenados = new ArrayList<>(historialVentas.getVendedores());
+        Collections.sort(vendedoresOrdenados, Comparator.comparingDouble(Vendedor::getTotalRecaudado).reversed());
+
+        try (FileWriter writer = new FileWriter(nombreArchivo)) {
+            // Escribir la cabecera del archivo CSV
+            writer.write("Nombre del Vendedor;Total Vendido\n");
+
+            // Recorrer los vendedores ordenados y escribir la información en el archivo CSV
+            for (Vendedor vendedor : vendedoresOrdenados) {
+                // Obtener el total vendido por el vendedor actual
+                double totalVentasVendedor = vendedor.getTotalRecaudado();
+
+                // Escribir la información del vendedor en el archivo CSV
+                writer.write(vendedor.getNombreVendedor() + ";" + totalVentasVendedor + "\n");
+            }
+            System.out.println("Archivo de reporte generado con éxito: " + nombreArchivo);
+        } catch (IOException e) {
+            throw new RuntimeException("Error al escribir el archivo de reporte: " + e.getMessage());
+        }
+    }
+
+    public void createProductSoldFile() {
+        String nombreArchivo = "ProductosVendidos.csv";
+
+        try (FileWriter writer = new FileWriter(nombreArchivo)) {
+            // Ordenar el mapa totalVendidoPorProducto por cantidad de forma descendente
+            historialVentas.getTotalVendidoPorProducto().entrySet().stream()
+                    .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                    .forEach(entry -> {
+                        Producto producto = entry.getKey();
+                        double precio = producto.getPrecioProducto();
+                        double cantidad = entry.getValue();
+
+                        // Escribir la información del producto en el archivo CSV
+                        try {
+                            writer.write(producto.getNameProducto() + ";" + precio + ";" + cantidad + "\n");
+                        } catch (IOException e) {
+                            throw new RuntimeException("Error al escribir en el archivo: " + e.getMessage());
+                        }
+                    });
+
+            System.out.println("Archivo de productos vendidos generado con éxito: " + nombreArchivo);
+        } catch (IOException e) {
+            throw new RuntimeException("Error al crear el archivo: " + e.getMessage());
+        }
+    }
 
 }
+
+
+
+

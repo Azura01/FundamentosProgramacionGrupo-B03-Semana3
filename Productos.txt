@@ -1,5 +1,5 @@
 ===== Listado de productos =====
-ID: 1 Nombre del Producto: Apple Iphone 15 Pro Max Precio: 7685000.4
-ID: 2 Nombre del Producto: Apple Iphone 14 Pro Max Precio: 5532000.3
-ID: 3 Nombre del Producto: Ipad 15' de 128 Gbs Precio: 2435000.1
-ID: 4 Nombre del Producto: Smart Watch 14` Precio: 1685000.4
+ID: 1 Nombre del Producto: Apple Iphone 15 Pro Max Precio: 785.4
+ID: 2 Nombre del Producto: Apple Iphone 14 Pro Max Precio: 400.53
+ID: 3 Nombre del Producto: Ipad 15' de 128 Gbs Precio: 342.2
+ID: 4 Nombre del Producto: Smart Watch 14` Precio: 160.4
