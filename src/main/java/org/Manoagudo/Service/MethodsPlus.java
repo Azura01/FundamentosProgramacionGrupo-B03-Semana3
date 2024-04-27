@@ -11,7 +11,7 @@ import java.util.*;
 
 // Clase que implementa la interfaz GeneradorArchivo para generar archivos de información
 
-public class GenerateInfoFiles implements GeneradorArchivo {
+public class MethodsPlus implements GeneradorArchivo {
 
     private HistorialVentas historialVentas = HistorialVentas.obtenerInstancia();
 

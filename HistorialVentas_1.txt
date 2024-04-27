@@ -1,17 +1,19 @@
 ===== El vendedor Jose Manuel =====
-Producto: Apple Iphone 15 Pro Max
-Cantidad vendida: 8
-Total vendido: 6.14800032E7
-
+ 
 Producto: Apple Iphone 14 Pro Max
-Cantidad vendida: 9
-Total vendido: 4.9788002699999996E7
+Cantidad vendida: 5
+Total vendido: 2002.6499999999999
 
 Producto: Ipad 15' de 128 Gbs
-Cantidad vendida: 8
-Total vendido: 1.94800008E7
+Cantidad vendida: 7
+Total vendido: 2395.4
+
+Producto: Apple Iphone 15 Pro Max
+Cantidad vendida: 4
+Total vendido: 3141.6
 
 Producto: Smart Watch 14`
-Cantidad vendida: 9
-Total vendido: 1.51650036E7
+Cantidad vendida: 2
+Total vendido: 320.8
 
+Total vendido por Jose Manuel: 7860.45

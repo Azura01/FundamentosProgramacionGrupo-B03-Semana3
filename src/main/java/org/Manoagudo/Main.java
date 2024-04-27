@@ -1,12 +1,6 @@
 package org.Manoagudo;
 
-import org.Manoagudo.BaseDeDatos.BaseDatos;
-import org.Manoagudo.Entidades.Vendedor;
-import org.Manoagudo.Service.GenerateInfoFiles;
-
-
-import java.util.ArrayList;
-import java.util.List;
+import org.Manoagudo.Service.MethodsPlus;
 
 // Clase principal que contiene el método main para iniciar la aplicación
 
@@ -16,7 +10,7 @@ public class Main {
         
 // Creación de una instancia de GenerateInfoFiles para generar archivos de información 
         
-        GenerateInfoFiles generarArchivos = new GenerateInfoFiles();
+        MethodsPlus generarArchivos = new MethodsPlus();
 
 // Llamada a los métodos para generar archivos de productos y de historial de ventas
         
